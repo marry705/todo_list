@@ -1,11 +1,15 @@
-
 module.exports = {
+    'parser':  '@typescript-eslint/parser',
     'env': {
         'node': true,
         'es6': true,
-        "browser": true
+        'browser': true
     },
-    'extends': 'eslint:recommended',
+    'extends': [
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'plugin:@typescript-eslint/recommended',
+    ],
     'rules': {
         'indent': [2, 4],
         'semi': [2, 'always'],
@@ -13,8 +17,9 @@ module.exports = {
         'no-unused-vars': [1],
         'no-console': [0]
     },
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
+    'parserOptions': {
+        sourceType:  'module',
+        'ecmaVersion': 6,
+        'sourceType': 'module',
     }
 };

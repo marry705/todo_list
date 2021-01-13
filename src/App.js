@@ -1,14 +1,12 @@
-import React, { Component} from 'react';
-import './App.css';
+import React from 'react';
+import ButtonsPanel from './components/ButtonsPanel/ButtonsPanel';
+import TasksList from './components/TasksList/TasksList';
 
-class App extends Component{
-  render(){
-    return(
-      <>
-        <h1> Hello, World! </h1>
-      </>
-    );
-  }
-}
+const App = () => (
+  <>
+      <ButtonsPanel />
+      <TasksList />
+  </>
+);
 
 export default App;

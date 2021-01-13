@@ -1,7 +1,7 @@
 import { TASKS } from '../constants/constants';
-import { getLocalStorage, setLocalStorage } from './tasksReducer';
+import { getLocalStorage, setLocalStorage } from './actions';
 
-let posts = getLocalStorage('tasks') ? JSON.parse(getLocalStorage('tasks')) : [];
+let tasks = getLocalStorage('tasks') ? JSON.parse(getLocalStorage('tasks')) : [];
 
 const initialState = {
     tasks: tasks
