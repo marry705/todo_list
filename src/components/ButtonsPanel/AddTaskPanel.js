@@ -1,29 +1,27 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 import { addTask } from '../../redux/actions';
 
-const useStyles = makeStyles( (theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
-  }),
-);
-
 const AddTaskPanel = () => {
+    const newTask = useRef(null);
     const dispatch = useDispatch();
-    const classes = useStyles();
+
+    const handleSubmitEvent = (e) => {
+      e.preventDefault();
+      dispatch(addTask({ data: newTask.current['tasktext'].value, time: new Date().getTime() }));
+      newTask.current['tasktext'].value = '';
+    };
+
 
     return (
-        <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="standard-basic" label="Standard" />
-        </form>
+      <form ref={newTask}
+            onSubmit={handleSubmitEvent}>
+            <TextField id='standard-basic'
+                      name={'tasktext'}
+                      label='Enter new task' />
+      </form>
     );
 };
 

@@ -10,7 +10,7 @@ const initialState = {
 const tasksReducer = (state = initialState, action) => {
     switch (action.type) {
         case TASKS.ADD_NEW_TASK:
-          tasks = state['tasks'].concat([{ data: action.payload.data, id: action.payload.data, time: action.payload.time }]);
+          tasks = state['tasks'].concat([{ data: action.payload.data, id: `mr${(~~(Math.random()*1e8)).toString(16)}s`, time: action.payload.time }]);
           setLocalStorage('tasks', JSON.stringify(tasks));
           return {...state, tasks: tasks};
 
