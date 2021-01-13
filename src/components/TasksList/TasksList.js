@@ -8,11 +8,11 @@ const TasksContainer = () => {
     const { tasks } = useSelector(state => state.tasks.present);
     const dispatch = useDispatch();
 
-    const TaskRow = ({ index, key, style }) => {
+    const TaskRow = ({ data, index, style }) => {
         return (
-            <div key={key} style={style}>
-                <button onClick={() => dispatch(removeTask(tasks[index].id))}></button>
-                <div>{tasks[index].data}</div>
+            <div style={style}>
+                <button onClick={() => dispatch(removeTask(data[index].id))}></button>
+                <div>{data[index].data}</div>
             </div>
         );
     };
