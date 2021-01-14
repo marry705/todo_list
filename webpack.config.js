@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -24,23 +25,38 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader'],
       },
     ],
   },
   resolve: { extensions: ['*', '.js', '.jsx'] },
   output: {
-    path: path.resolve(__dirname, 'dist/'),
-    publicPath: '/dist/',
+    path: path.resolve(__dirname, 'public/'),
     filename: 'bundle.js',
   },
   devServer: {
     contentBase: path.join(__dirname, 'public/'),
     port: 3000,
-    publicPath: 'http://localhost:3000/dist/',
     hotOnly: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'ToDo List',
+      template: path.resolve(__dirname, './src/index.html'),
+      filename: 'index.html',
+    }),
   ],
 };
