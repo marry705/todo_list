@@ -1,0 +1,29 @@
+.header-wrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.buttons-container{
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.buttons-container .undo-button{
+  margin-left: 10px;
+}
+
+.form-container{
+  flex: 0 1 600px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

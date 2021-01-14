@@ -6,10 +6,11 @@ import rootReducer from './redux/index';
 
 import App from './App';
 
-const store = createStore( rootReducer );
+const store = createStore(rootReducer);
 
-ReactDOM.render(  
-    <Provider store={store}>
-        <App />
-    </Provider>, 
-document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'),
+);

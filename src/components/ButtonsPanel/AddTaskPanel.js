@@ -1,28 +1,42 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import TextField from '@material-ui/core/TextField';
+import { Input, Button } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 
 import { addTask } from '../../redux/actions';
 
+import './ButtonsPanel.css';
+
 const AddTaskPanel = () => {
-    const newTask = useRef(null);
-    const dispatch = useDispatch();
+  const newTask = useRef(null);
+  const dispatch = useDispatch();
 
-    const handleSubmitEvent = (e) => {
-      e.preventDefault();
-      dispatch(addTask({ data: newTask.current['tasktext'].value, time: new Date().getTime() }));
-      newTask.current['tasktext'].value = '';
-    };
+  const submitNewTask = (e) => {
+    e.preventDefault();
+    if (newTask.current.tasktext.value) {
+      dispatch(addTask({ data: newTask.current.tasktext.value, time: new Date() }));
+    }
+    newTask.current.tasktext.value = '';
+    newTask.current.tasktext.blur();
+  };
 
-
-    return (
-      <form ref={newTask}
-            onSubmit={handleSubmitEvent}>
-            <TextField id='standard-basic'
-                      name={'tasktext'}
-                      label='Enter new task' />
-      </form>
-    );
+  return (
+    <form
+      ref={newTask}
+      className="form-container"
+    >
+      <Input
+        fullWidth
+        name="tasktext"
+        onKeyPress={(e) => (e.key === 'Enter' ? submitNewTask(e) : null)}
+        label="Enter new task"
+      />
+      <Button
+        startIcon={<AddIcon />}
+        onClick={submitNewTask}
+      />
+    </form>
+  );
 };
 
 export default AddTaskPanel;

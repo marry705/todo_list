@@ -1,38 +1,35 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { ActionCreators as UndoActionCreators } from 'redux-undo';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
-let UndoButtonsPanel = ({ canUndo, canRedo, onUndo, onRedo }) => {
+import { onUndo, onRedo } from '../../redux/actions';
+
+import './ButtonsPanel.css';
+
+const UndoButtonsPanel = () => {
+  const canUndo = useSelector(state => state.tasks.past.length > 0);
+  const canRedo = useSelector(state => state.tasks.future.length > 0);
+
+  const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className='buttons-container'>
         <Button disabled={!canUndo} 
-                onClick={onUndo}
+                onClick={() => dispatch(onUndo())}
                 variant='outlined' 
-                color='secondary'>
+                color='secondary'
+                className='undo-button'>
             UNDO
         </Button>
         <Button disabled={!canRedo} 
-                onClick={onRedo}
+                onClick={() => dispatch(onRedo())}
                 variant='outlined' 
-                color='secondary'>
+                color='secondary'
+                className='undo-button'>
             REDO
         </Button>
     </div>
   );
 };
-
-const mapStateToProps = (state) => ({
-  canUndo: state.tasks.past.length > 0,
-  canRedo: state.tasks.future.length > 0
-});
-
-const mapDispatchToProps = ({
-  onUndo: UndoActionCreators.undo,
-  onRedo: UndoActionCreators.redo
-});
-
-UndoButtonsPanel = connect( mapStateToProps, mapDispatchToProps )(UndoButtonsPanel);
 
 export default UndoButtonsPanel;

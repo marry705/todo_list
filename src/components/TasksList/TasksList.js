@@ -1,38 +1,35 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeTask } from '../../redux/actions';
-import { FixedSizeList as List } from 'react-window';
+import { useSelector } from 'react-redux';
+import { List } from 'react-virtualized';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
+import TaskCard from './TaskCard';
+
+import 'react-virtualized/styles.css';
+import './TasksList.css';
+
 const TasksContainer = () => {
-    const { tasks } = useSelector(state => state.tasks.present);
-    const dispatch = useDispatch();
+  const { tasks } = useSelector((state) => state.tasks.present);
 
-    const TaskRow = ({ index, style }) => {
-        return (
-            <div style={style}>
-                <button onClick={() => dispatch(removeTask(tasks[index].id))}></button>
-                <div>{tasks[index].data}</div>
-            </div>
-        );
-    };
+  const TaskCardRender = ({ index, style }) => (
+    <TaskCard key={tasks[index].id} task={tasks[index]} style={style} />
+  );
 
-    return (
-        <AutoSizer>
-            {({ height, width }) => (
-                <List
-                    classNmae='List'
-                    width={width}
-                    height={height}
-                    itemSize={65}
-                    itemCount={tasks.length}> 
-
-                    {TaskRow}
-
-                </List>
-            )}
-        </AutoSizer>
-    );
+  return (
+    <div className="tasks-wrapper">
+      <AutoSizer>
+        {({ height, width }) => (
+          <List
+            height={height}
+            width={width}
+            rowCount={tasks.length}
+            rowHeight={65}
+            rowRenderer={TaskCardRender}
+          />
+        )}
+      </AutoSizer>
+    </div>
+  );
 };
 
 export default TasksContainer;

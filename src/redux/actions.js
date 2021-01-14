@@ -1,30 +1,21 @@
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 import { TASKS } from '../constants/constants';
 
-export const getLocalStorage = (key) => {
-  return window.localStorage.getItem(key);
-};
+export const onUndo = UndoActionCreators.undo;
 
-export const setLocalStorage = (key, value) => {
-  window.localStorage.setItem(key, value);
-};
-//
-export const addTask = (data) => {
-  return {
-    type: TASKS.ADD_NEW_TASK,
-    payload: data,
-  }
-};
+export const onRedo = UndoActionCreators.redo;
 
-export const removeTask = (data) => {
-  return {
-    type: TASKS.REMOVE_TASK,
-    payload: data,
-  }
-};
+export const addTask = (data) => ({
+  type: TASKS.ADD_NEW_TASK,
+  payload: data,
+});
 
-export const changeTask = (data) => {
-  return {
-    type: TASKS.CHANGE_TASK,
-    payload: data,
-  }
-};
+export const removeTask = (data) => ({
+  type: TASKS.REMOVE_TASK,
+  payload: data,
+});
+
+export const changeTask = (data) => ({
+  type: TASKS.CHANGE_TASK,
+  payload: data,
+});

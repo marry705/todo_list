@@ -1,16 +1,14 @@
 import React from 'react';
-
 import AddTaskPanel from './AddTaskPanel';
 import UndoButtonsPanel from './UndoButtonsPanel';
 
-const ButtonsPanel = () => {
+import './ButtonsPanel.css';
 
-  return (
-    <>
-      <AddTaskPanel />
-      <UndoButtonsPanel />
-    </>
-  );
-};
+const ButtonsPanel = () => (
+  <div className="header-wrapper">
+    <AddTaskPanel />
+    <UndoButtonsPanel />
+  </div>
+);
 
 export default ButtonsPanel;
