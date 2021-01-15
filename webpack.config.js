@@ -3,37 +3,28 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   mode: 'development',
   module: {
     rules: [
       {
-        test: /\.(jsx|js)$/,
+        test: /\.(ts|js)x?$/,
         include: path.resolve(__dirname, 'src'),
         exclude: /node_modules/,
         use: [{
           loader: 'babel-loader',
           options: {
             presets: [
-              ['@babel/preset-env', {
-                targets: 'defaults',
-              }],
+              '@babel/preset-env',
               '@babel/preset-react',
+              '@babel/preset-typescript',
             ],
           },
         }],
       },
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
-        ],
+        test: /\.css$/i,
+        loader: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -41,7 +32,7 @@ module.exports = {
       },
     ],
   },
-  resolve: { extensions: ['*', '.js', '.jsx'] },
+  resolve: { extensions: ['.tsx', '.ts', '.jsx', '.js'] },
   output: {
     path: path.resolve(__dirname, 'public/'),
     filename: 'bundle.js',

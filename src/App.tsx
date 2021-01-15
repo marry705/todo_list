@@ -1,13 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import ButtonsPanel from './components/ButtonsPanel/ButtonsPanel';
 import TasksList from './components/TasksList/TasksList';
 
 import './index.css';
 
-const App = () => (
-  <div className='main-wrapper'>
-      <ButtonsPanel />
-      <TasksList />
+const App: React.FC = () => (
+  <div className="main-wrapper">
+    <ButtonsPanel />
+    <TasksList />
   </div>
 );
 

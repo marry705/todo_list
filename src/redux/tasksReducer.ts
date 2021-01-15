@@ -1,24 +1,30 @@
-import { TASKS } from '../constants/constants';
+import TASKS from '../constants/constants';
 import { getLocalStorage, setLocalStorage } from '../services/storageService';
+import { TodosState, TodosAction, Todo } from './type';
 
 let tasks = getLocalStorage('tasks') ? JSON.parse(getLocalStorage('tasks')) : [];
 
-const initialState = {
+const initialState: TodosState = {
   tasks,
 };
 
-const tasksReducer = (state = initialState, action) => {
+const tasksReducer = (
+  state: TodosState = initialState,
+  action: TodosAction,
+): TodosState => {
   switch (action.type) {
     case TASKS.ADD_NEW_TASK:
       tasks = state.tasks.concat([{ data: action.payload.data, id: `mr${(~~(Math.random() * 1e8)).toString(16)}s`, time: action.payload.time }]);
-      tasks.sort((task1, task2) => (new Date(task1.time) > new Date(task2.time) ? 1 : -1));
+      // eslint-disable-next-line max-len
+      tasks.sort((task1: Todo, task2: Todo) => (new Date(task1.time) > new Date(task2.time) ? 1 : -1));
       setLocalStorage('tasks', JSON.stringify(tasks));
 
       return { ...state, tasks };
 
     case TASKS.REMOVE_TASK:
-      tasks = state.tasks.filter((task) => task.id !== action.payload);
-      tasks.sort((task1, task2) => (new Date(task1.time) > new Date(task2.time) ? 1 : -1));
+      tasks = state.tasks.filter((task) => task.id !== action.payload.id);
+      // eslint-disable-next-line max-len
+      tasks.sort((task1: Todo, task2: Todo) => (new Date(task1.time) > new Date(task2.time) ? 1 : -1));
       setLocalStorage('tasks', JSON.stringify(tasks));
 
       return { ...state, tasks };
@@ -30,7 +36,8 @@ const tasksReducer = (state = initialState, action) => {
         }
         return task;
       });
-      tasks.sort((task1, task2) => (new Date(task1.time) > new Date(task2.time) ? 1 : -1));
+      // eslint-disable-next-line max-len
+      tasks.sort((task1: Todo, task2: Todo) => (new Date(task1.time) > new Date(task2.time) ? 1 : -1));
       setLocalStorage('tasks', JSON.stringify(tasks));
 
       return { ...state, tasks };

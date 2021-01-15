@@ -4,4 +4,4 @@ const TASKS = {
   CHANGE_TASK: 'CHANGE_TASK',
 };
 
-export { TASKS };
+export default TASKS;

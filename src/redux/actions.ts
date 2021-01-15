@@ -1,21 +1,22 @@
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
-import { TASKS } from '../constants/constants';
+import { Todo, TodosAction } from './type';
+import TASKS from '../constants/constants';
 
 export const onUndo = UndoActionCreators.undo;
 
 export const onRedo = UndoActionCreators.redo;
 
-export const addTask = (data) => ({
+export const addTask = (data: Todo): TodosAction => ({
   type: TASKS.ADD_NEW_TASK,
   payload: data,
 });
 
-export const removeTask = (data) => ({
+export const removeTask = (data: Todo): TodosAction => ({
   type: TASKS.REMOVE_TASK,
   payload: data,
 });
 
-export const changeTask = (data) => ({
+export const changeTask = (data: Todo): TodosAction => ({
   type: TASKS.CHANGE_TASK,
   payload: data,
 });
