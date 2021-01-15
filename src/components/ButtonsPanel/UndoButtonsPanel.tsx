@@ -8,8 +8,9 @@ import { HistoryTodosState } from '../../redux/type';
 import './ButtonsPanel.css';
 
 const UndoButtonsPanel: React.FC = () => {
-  const canUndo:boolean = useSelector((state: HistoryTodosState) => state.tasks.past.length > 0);
-  const canRedo:boolean = useSelector((state: HistoryTodosState) => state.tasks.future.length > 0);
+  const canUndo:boolean = useSelector((state: HistoryTodosState) => state.toDoList.past.length > 0);
+  // eslint-disable-next-line max-len
+  const canRedo:boolean = useSelector((state: HistoryTodosState) => state.toDoList.future.length > 0);
 
   const dispatch = useDispatch();
 

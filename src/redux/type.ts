@@ -11,10 +11,10 @@ export type TodosState = {
 };
 
 export type HistoryTodosState = {
-    tasks:{
-        past: Todo[],
-        present: Todo[],
-        future: Todo[],
+    toDoList:{
+        past: TodosState[],
+        present: TodosState,
+        future: TodosState[],
     }
 };
 //

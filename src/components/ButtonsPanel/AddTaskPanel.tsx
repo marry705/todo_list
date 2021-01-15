@@ -8,15 +8,15 @@ import { addTask } from '../../redux/actions';
 import './ButtonsPanel.css';
 
 const AddTaskPanel: React.FC = () => {
-  const newTask = React.useRef<HTMLInputElement>(null);
+  const newTaskInput = React.useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
   const submitNewTask = () => {
-    if (newTask.current.value) {
-      dispatch(addTask({ data: newTask.current.value, id: '0', time: new Date().toString() }));
+    if (newTaskInput.current.value) {
+      dispatch(addTask({ data: newTaskInput.current.value, id: '0', time: new Date().toString() }));
     }
-    newTask.current.value = '';
-    newTask.current.blur();
+    newTaskInput.current.value = '';
+    newTaskInput.current.blur();
   };
 
   const keyPressHandler = (e: React.KeyboardEvent) => {
@@ -32,7 +32,7 @@ const AddTaskPanel: React.FC = () => {
     >
       <Input
         fullWidth
-        inputRef={newTask}
+        inputRef={newTaskInput}
         onKeyPress={keyPressHandler}
       />
       <Button

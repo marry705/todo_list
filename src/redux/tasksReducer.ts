@@ -16,7 +16,7 @@ const tasksReducer = (
     case TASKS.ADD_NEW_TASK:
       tasks = state.tasks.concat([{ data: action.payload.data, id: `mr${(~~(Math.random() * 1e8)).toString(16)}s`, time: action.payload.time }]);
       // eslint-disable-next-line max-len
-      tasks.sort((task1: Todo, task2: Todo) => (new Date(task1.time) > new Date(task2.time) ? 1 : -1));
+      tasks.sort((task1: Todo, task2: Todo) => (new Date(task1.time) > new Date(task2.time) ? -1 : 1));
       setLocalStorage('tasks', JSON.stringify(tasks));
 
       return { ...state, tasks };
@@ -24,7 +24,7 @@ const tasksReducer = (
     case TASKS.REMOVE_TASK:
       tasks = state.tasks.filter((task) => task.id !== action.payload.id);
       // eslint-disable-next-line max-len
-      tasks.sort((task1: Todo, task2: Todo) => (new Date(task1.time) > new Date(task2.time) ? 1 : -1));
+      tasks.sort((task1: Todo, task2: Todo) => (new Date(task1.time) > new Date(task2.time) ? -1 : 1));
       setLocalStorage('tasks', JSON.stringify(tasks));
 
       return { ...state, tasks };
@@ -37,7 +37,7 @@ const tasksReducer = (
         return task;
       });
       // eslint-disable-next-line max-len
-      tasks.sort((task1: Todo, task2: Todo) => (new Date(task1.time) > new Date(task2.time) ? 1 : -1));
+      tasks.sort((task1: Todo, task2: Todo) => (new Date(task1.time) > new Date(task2.time) ? -1 : 1));
       setLocalStorage('tasks', JSON.stringify(tasks));
 
       return { ...state, tasks };
