@@ -23,7 +23,7 @@ const TasksContainer: React.FC = () => {
 
   return (
     <div className="tasks-wrapper">
-      <FixedSizeList height={400} width={800} itemSize={90} itemCount={tasks.length}>
+      <FixedSizeList height={400} width={1000} itemSize={90} itemCount={tasks.length}>
         {renderRow}
       </FixedSizeList>
     </div>

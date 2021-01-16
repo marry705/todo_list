@@ -3,18 +3,9 @@
     width: 80%;
 }
 
-.task-card{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+.MuiListItemText-root.no-active {
+    display: none;
 }
-
-.task-form-card{
-    flex: 0 1 600px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.MuiInput-root.no-active {
+    display: none;
 }

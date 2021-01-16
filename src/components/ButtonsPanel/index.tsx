@@ -1,14 +1,16 @@
 import * as React from 'react';
+import { AppBar } from '@material-ui/core';
+
 import AddTaskPanel from './AddTaskPanel';
 import UndoButtonsPanel from './UndoButtonsPanel';
 
 import './ButtonsPanel.css';
 
 const ButtonsPanel: React.FC = () => (
-  <div className="header-wrapper">
+  <AppBar color="transparent" position="static">
     <AddTaskPanel />
     <UndoButtonsPanel />
-  </div>
+  </AppBar>
 );
 
 export default ButtonsPanel;

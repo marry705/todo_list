@@ -1,6 +1,6 @@
 import * as React from 'react';
-import ButtonsPanel from './components/ButtonsPanel/ButtonsPanel';
-import TasksList from './components/TasksList/TasksList';
+import ButtonsPanel from './components/ButtonsPanel';
+import TasksList from './components/TasksList';
 
 import './index.css';
 

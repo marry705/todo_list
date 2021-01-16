@@ -1,19 +1,21 @@
 .header-wrapper{
-  width: 100%;
+  /* width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
+  flex-grow: 1;
 }
 
 .buttons-container{
-  display: flex;
+  flex-grow: 1;
+  /* display: flex;
   flex: 0 1 auto;
   flex-direction: row;
   justify-content: space-around;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
 }
 
 .buttons-container .undo-button{
@@ -21,9 +23,10 @@
 }
 
 .form-container{
-  flex: 0 1 600px;
+  flex-grow: 1;
+  /* flex: 0 1 600px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
 }
