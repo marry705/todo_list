@@ -18,6 +18,7 @@ beforeEach(() => render(
 
 afterEach(cleanup);
 
-test('Checking the initial rendering of the component', () => {
+test('Checking the initial rendering of the main component', () => {
   expect(screen.getByRole('button', { name: 'Add' })).toBeInTheDocument();
+  expect(screen.getByRole('list')).toBeInTheDocument();
 });

@@ -1,8 +1,15 @@
 .tasks-wrapper{
-    height: calc(100vh - 250px);
+    height: calc(100vh - 150px);
     width: 80%;
 }
-
+.MuiList-root{
+    overflow-y: auto;
+    height: 100%;
+}
+.MuiListItemText-root.time-line{
+    margin-left: auto;
+    flex: 0 0 auto;
+}
 .MuiListItemText-root.no-active {
     display: none;
 }

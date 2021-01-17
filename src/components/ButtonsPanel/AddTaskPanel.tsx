@@ -5,8 +5,6 @@ import AddIcon from '@material-ui/icons/Add';
 
 import { addTask } from '../../redux/actions';
 
-import './ButtonsPanel.css';
-
 const AddTaskPanel: React.FC = () => {
   const newTaskInput = React.useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();

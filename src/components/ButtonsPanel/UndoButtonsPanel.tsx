@@ -5,8 +5,6 @@ import Button from '@material-ui/core/Button';
 import { onUndo, onRedo } from '../../redux/actions';
 import { HistoryTodosState } from '../../redux/type';
 
-import './ButtonsPanel.css';
-
 const UndoButtonsPanel: React.FC = () => {
   const canUndo:boolean = useSelector((state: HistoryTodosState) => state.toDoList.past.length > 0);
   // eslint-disable-next-line max-len
@@ -15,7 +13,7 @@ const UndoButtonsPanel: React.FC = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="buttons-container">
+    <div>
       <Button
         disabled={!canUndo}
         onClick={() => dispatch(onUndo())}

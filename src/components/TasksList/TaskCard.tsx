@@ -28,7 +28,8 @@ const TaskCard: React.FC<Props> = ({ task }: Props) => {
 
   const openTaskEditor = () => {
     taskTextContainer.current.classList.add('no-active');
-    taskInput.current.type = 'text';
+    taskInput.current.disabled = false;
+    taskInput.current.parentElement.classList.remove('no-active');
   };
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,8 +38,10 @@ const TaskCard: React.FC<Props> = ({ task }: Props) => {
 
   const keyPressHandler = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
+      e.stopPropagation();
       dispatch(changeTask({ data: taskText, id: task.id, time: new Date().toString() }));
-      taskInput.current.type = 'hidden';
+      taskInput.current.parentElement.classList.add('no-active');
+      taskInput.current.disabled = true;
       taskTextContainer.current.classList.remove('no-active');
     }
   };
@@ -55,14 +58,15 @@ const TaskCard: React.FC<Props> = ({ task }: Props) => {
       />
       <ListItemText primary={taskText} ref={taskTextContainer} />
       <Input
-        type="hidden"
         fullWidth
+        disabled
+        className="no-active"
         inputRef={taskInput}
         value={taskText}
         onChange={changeHandler}
         onKeyPress={keyPressHandler}
       />
-      <div>{new Date(task.time).toLocaleDateString('ru', dateOptions)}</div>
+      <ListItemText primary={new Date(task.time).toLocaleDateString('ru', dateOptions)} className="time-line" />
     </>
   );
 };
