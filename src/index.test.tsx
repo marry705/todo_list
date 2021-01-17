@@ -1,14 +1,15 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, cleanup, screen } from '@testing-library/react';
 
-import { createStore } from 'redux';
+import { createStore, Store } from 'redux';
 import { Provider } from 'react-redux';
 
 import App from './App';
 import rootReducer from './redux/index';
+import { TodosAction, TodosState, DispatchType } from './redux/type';
 
-const store = createStore(rootReducer);
+const store: Store<TodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
 
 beforeEach(() => render(
   <Provider store={store}>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, cleanup, screen } from '@testing-library/react';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';

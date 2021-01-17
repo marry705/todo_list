@@ -30,6 +30,7 @@ const AddTaskPanel: React.FC = () => {
     >
       <Input
         fullWidth
+        type="text"
         placeholder="Enter new task"
         inputRef={newTaskInput}
         onKeyPress={keyPressHandler}

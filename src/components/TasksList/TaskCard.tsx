@@ -60,6 +60,7 @@ const TaskCard: React.FC<Props> = ({ task }: Props) => {
       <Input
         fullWidth
         disabled
+        type="text"
         className="no-active"
         inputRef={taskInput}
         value={taskText}
