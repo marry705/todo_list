@@ -2,7 +2,7 @@
   "name": "todo_list",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.tsx",
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
@@ -75,7 +75,8 @@
     "build": "webpack --mode production --progress --hide-modules",
     "start": "webpack-dev-server --open --hot",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "lint": "eslint src --ext .tsx",
+    "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",

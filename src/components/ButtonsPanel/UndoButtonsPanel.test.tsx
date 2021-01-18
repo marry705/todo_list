@@ -1,6 +1,8 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { render, cleanup, screen, fireEvent } from '@testing-library/react';
+import {
+  render, cleanup, screen, fireEvent,
+} from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
 import { createStore, Store } from 'redux';
