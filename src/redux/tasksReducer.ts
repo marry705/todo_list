@@ -1,4 +1,4 @@
-import TASKS from '../constants/constants';
+import { TASKS } from '../constants';
 import { getLocalStorage, setLocalStorage } from '../services/storageService';
 import { TodosState, TodosAction, Todo } from './type';
 

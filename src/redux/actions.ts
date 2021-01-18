@@ -1,6 +1,6 @@
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
 import { Todo, TodosAction } from './type';
-import TASKS from '../constants/constants';
+import { TASKS } from '../constants';
 
 export const onUndo = UndoActionCreators.undo;
 

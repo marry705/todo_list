@@ -1,4 +1,4 @@
-import TASKS from '../constants/constants';
+import { TASKS } from '../constants';
 
 export type Todo = {
     id: string,

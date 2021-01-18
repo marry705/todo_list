@@ -8,13 +8,37 @@ import { Provider } from 'react-redux';
 
 import TasksList from './index';
 import rootReducer from '../../redux/index';
-import { TodosState, TodosAction, DispatchType } from '../../redux/type';
+import {
+  TodosState, HistoryTodosState, TodosAction, DispatchType,
+} from '../../redux/type';
 
 afterEach(cleanup);
 
-test('Checking the initial rendering of the component TaskList', () => {
+test('Checking the initial rendering of the component TasksList', async () => {
+  const initialState:TodosState = {
+    tasks: [
+      {
+        id: 'mr8c37c4s',
+        time: 'Mon Jan 18 2021 16:29:43 GMT+0300 (Moscow Standard Time)',
+        data: 'first',
+      },
+      {
+        id: 'mr8c36c4s',
+        time: 'Mon Jan 18 2021 16:30:43 GMT+0300 (Moscow Standard Time)',
+        data: 'second',
+      },
+    ],
+  };
+
+  const initialHistoryState:HistoryTodosState = {
+    toDoList: {
+      past: [],
+      present: initialState,
+      future: [],
+    },
+  };
   // eslint-disable-next-line max-len
-  const store: Store<TodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
+  const store: Store<TodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer, initialHistoryState);
 
   act(() => {
     render(
@@ -23,22 +47,11 @@ test('Checking the initial rendering of the component TaskList', () => {
       </Provider>,
     );
   });
+
   expect(screen.getByRole('list')).toBeInTheDocument();
-});
+  let listItem = await screen.findByText(initialState.tasks[0].data);
+  expect(listItem).toBeInTheDocument();
 
-test('Checking the initial rendering of the component TaskList', () => {
-//   const store = createStore(rootReducer, initialState);
-
-  //   act(() => {
-  //     render(
-  //       <Provider store={store}>
-  //         <TaskList />
-  //       </Provider>,
-  //     );
-  //   });
-  //   expect(screen.getByRole('button', { name: 'Add' })).toBeInTheDocument();
-
-//   act(() => {
-//     render(<TaskCard />);
-//   });
+  listItem = await screen.findByText(initialState.tasks[1].data);
+  expect(listItem).toBeInTheDocument();
 });

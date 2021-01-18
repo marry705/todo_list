@@ -1,18 +1,25 @@
-.tasks-wrapper{
+.tasks-wrapper {
     height: calc(100vh - 150px);
     width: 80%;
 }
-.MuiList-root{
+.MuiList-root {
     overflow-y: auto;
     height: 100%;
 }
-.MuiListItemText-root.time-line{
+.MuiListItemText-root.time-line {
     margin-left: auto;
     flex: 0 0 auto;
+}
+.MuiListItemText-root {
+    word-break: break-all;
 }
 .MuiListItemText-root.no-active {
     display: none;
 }
 .MuiInput-root.no-active {
     display: none;
+}
+.MuiButtonBase-root.task-button {
+    margin-right: auto;
+    flex: 0 0 auto;
 }

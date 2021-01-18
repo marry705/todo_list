@@ -6,10 +6,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import { removeTask, changeTask } from '../../redux/actions';
 import { Todo } from '../../redux/type';
-
-const dateOptions = {
-  year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric',
-};
+import { dateOptions } from '../../constants';
 
 interface Props {
   task: Todo
@@ -49,13 +46,19 @@ const TaskCard: React.FC<Props> = ({ task }: Props) => {
   return (
     <>
       <Button
+        className="task-button"
         onClick={() => dispatch(removeTask(task))}
         startIcon={<DeleteIcon />}
-      />
+      >
+        Delete
+      </Button>
       <Button
+        className="task-button"
         onClick={() => openTaskEditor()}
         startIcon={<EditIcon />}
-      />
+      >
+        Edit
+      </Button>
       <ListItemText primary={taskText} ref={taskTextContainer} />
       <Input
         fullWidth
