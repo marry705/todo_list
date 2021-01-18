@@ -34,11 +34,11 @@ module.exports = {
   },
   resolve: { extensions: ['.tsx', '.ts', '.jsx', '.js'] },
   output: {
-    path: path.resolve(__dirname, 'public/'),
+    path: path.resolve(__dirname, 'dist/'),
     filename: 'bundle.js',
   },
   devServer: {
-    contentBase: path.join(__dirname, 'public/'),
+    contentBase: path.join(__dirname, 'dist/'),
     port: 3000,
     hotOnly: true,
   },
@@ -46,7 +46,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: 'ToDo List',
-      template: path.resolve(__dirname, './src/index.html'),
+      template: path.resolve(__dirname, './public/index.html'),
       filename: 'index.html',
     }),
   ],
