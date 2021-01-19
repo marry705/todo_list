@@ -58,6 +58,11 @@
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}"
     ],
+    "collectCoverage": true,
+    "coverageReporters": [
+      "text",
+      "html"
+    ],
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
@@ -75,6 +80,7 @@
     "build": "webpack --mode production --progress --hide-modules",
     "start": "webpack-dev-server --open --hot",
     "test": "jest",
+    "test-coverage": "jest --coverage --coverageDirectory=output/jest",
     "lint": "eslint src --ext .tsx",
     "lint:fix": "npm run lint -- --fix"
   },
