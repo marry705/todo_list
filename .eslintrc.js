@@ -6,6 +6,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: [
     'react-hooks',
+    'import',
     '@typescript-eslint',
   ],
   extends: [
@@ -26,12 +27,20 @@ module.exports = {
     'react/prop-types': 'off',
     'no-bitwise': ['error', { allow: ['~'] }],
     'no-use-before-define': 'off',
-    'import/extensions': 'off',
-    'import/no-unresolved': [2, { commonjs: true, caseSensitive: true }],
+    'import/extensions': ['error', 'never', { ignorePackages: true }],
+    'import/no-unresolved': 'error',
     'import/no-extraneous-dependencies': ['error', { peerDependencies: true }],
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
   },
   settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
     react: {
       pragma: 'React',
       version: 'detect',
