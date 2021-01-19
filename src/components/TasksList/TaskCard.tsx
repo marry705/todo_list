@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Input, Button, ListItemText } from '@material-ui/core';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
@@ -12,7 +13,23 @@ interface Props {
   task: Todo
 }
 
+const useStyles = makeStyles(() => createStyles({
+  timeLine: {
+    marginLeft: 'auto',
+    flex: '0 0 auto',
+  },
+  noActive: {
+    display: 'none',
+  },
+  taskButton: {
+    marginRight: 'auto',
+    flex: '0 0 auto',
+  },
+}));
+
 const TaskCard: React.FC<Props> = ({ task }: Props) => {
+  const classes = useStyles();
+
   const taskInput = React.useRef<HTMLInputElement>(null);
   const taskTextContainer = React.useRef<HTMLDivElement>(null);
 
@@ -46,14 +63,14 @@ const TaskCard: React.FC<Props> = ({ task }: Props) => {
   return (
     <>
       <Button
-        className="task-button"
+        className={classes.taskButton}
         onClick={() => dispatch(removeTask(task))}
         startIcon={<DeleteIcon />}
       >
         Delete
       </Button>
       <Button
-        className="task-button"
+        className={classes.taskButton}
         onClick={() => openTaskEditor()}
         startIcon={<EditIcon />}
       >
@@ -64,13 +81,13 @@ const TaskCard: React.FC<Props> = ({ task }: Props) => {
         fullWidth
         disabled
         type="text"
-        className="no-active"
+        className={classes.noActive}
         inputRef={taskInput}
         value={taskText}
         onChange={changeHandler}
         onKeyPress={keyPressHandler}
       />
-      <ListItemText primary={new Date(task.time).toLocaleDateString('ru', dateOptions)} className="time-line" />
+      <ListItemText primary={new Date(task.time).toLocaleDateString('ru', dateOptions)} className={classes.timeLine} />
     </>
   );
 };
