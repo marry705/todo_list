@@ -41,9 +41,9 @@ const TaskCard: React.FC<Props> = ({ task }: Props) => {
   }, [task.data]);
 
   const openTaskEditor = () => {
-    taskTextContainer.current.classList.add('no-active');
+    taskTextContainer.current.classList.add(classes.noActive);
     taskInput.current.disabled = false;
-    taskInput.current.parentElement.classList.remove('no-active');
+    taskInput.current.parentElement.classList.remove(classes.noActive);
   };
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,9 +54,9 @@ const TaskCard: React.FC<Props> = ({ task }: Props) => {
     if (e.key === 'Enter') {
       e.stopPropagation();
       dispatch(changeTask({ data: taskText, id: task.id, time: new Date().toString() }));
-      taskInput.current.parentElement.classList.add('no-active');
+      taskInput.current.parentElement.classList.add(classes.noActive);
       taskInput.current.disabled = true;
-      taskTextContainer.current.classList.remove('no-active');
+      taskTextContainer.current.classList.remove(classes.noActive);
     }
   };
 
