@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import TaskCard from './TaskCard';
 import rootReducer from '../../redux/index';
 import {
-  TodosState, TodosAction, DispatchType, Todo,
+  HistoryTodosState, TodosAction, DispatchType, Todo,
 } from '../../redux/type';
 import * as actions from '../../redux/actions';
 import { dateOptions } from '../../constants';
@@ -20,7 +20,7 @@ afterEach(cleanup);
 
 test('Checking the initial rendering of the component TaskCard first', async () => {
   // eslint-disable-next-line max-len
-  const store: Store<TodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
+  const store: Store<HistoryTodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
   const taskTest1:Todo = {
     id: 'mr8c36c4s',
     time: 'Mon Jan 18 2021 16:29:43 GMT+0300 (Moscow Standard Time)',
@@ -44,7 +44,7 @@ test('Checking the initial rendering of the component TaskCard first', async () 
 
 test('Checking the initial rendering of the component TaskCard second', async () => {
   // eslint-disable-next-line max-len
-  const store: Store<TodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
+  const store: Store<HistoryTodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
   const taskTest2:Todo = {
     id: 'mr8c36c4s',
     time: 'Mon Jan 19 2021 17:30:00 GMT+0300 (Moscow Standard Time)',
@@ -69,7 +69,7 @@ test('Checking the initial rendering of the component TaskCard second', async ()
 test('Checking Delete button', async () => {
   const removeTask = jest.spyOn(actions, 'removeTask');
   // eslint-disable-next-line max-len
-  const store: Store<TodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
+  const store: Store<HistoryTodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
   const taskTest2:Todo = {
     id: 'mr8c36c4s',
     time: 'Mon Jan 19 2021 17:30:00 GMT+0300 (Moscow Standard Time)',
@@ -92,7 +92,7 @@ test('Checking Delete button', async () => {
 test('Checking Edit button', async () => {
   const changeTask = jest.spyOn(actions, 'changeTask');
   // eslint-disable-next-line max-len
-  const store: Store<TodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
+  const store: Store<HistoryTodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
   const taskTest3:Todo = {
     id: 'mr8c36c4s',
     time: 'Mon Jan 19 2021 17:30:00 GMT+0300 (Moscow Standard Time)',

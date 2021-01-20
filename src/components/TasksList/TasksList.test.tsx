@@ -38,7 +38,7 @@ test('Checking the initial rendering of the component TasksList', async () => {
     },
   };
   // eslint-disable-next-line max-len
-  const store: Store<TodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer, initialHistoryState);
+  const store: Store<HistoryTodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer, initialHistoryState);
 
   act(() => {
     render(

@@ -43,7 +43,7 @@ test('Checking the initial rendering of the component UndoButtonsPanel', async (
   };
 
   // eslint-disable-next-line max-len
-  const store: Store<TodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer, initialHistoryState);
+  const store: Store<HistoryTodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer, initialHistoryState);
 
   act(() => {
     render(
@@ -79,7 +79,7 @@ test('Checking Undo|Redo buttons', async () => {
   };
 
   // eslint-disable-next-line max-len
-  const store: Store<TodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer, initialHistoryState);
+  const store: Store<HistoryTodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer, initialHistoryState);
 
   act(() => {
     render(

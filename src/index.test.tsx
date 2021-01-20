@@ -7,9 +7,10 @@ import { Provider } from 'react-redux';
 
 import App from './App';
 import rootReducer from './redux/index';
-import { TodosAction, TodosState, DispatchType } from './redux/type';
+import { TodosAction, HistoryTodosState, DispatchType } from './redux/type';
 
-const store: Store<TodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
+// eslint-disable-next-line max-len
+const store: Store<HistoryTodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
 
 beforeEach(() => render(
   <Provider store={store}>

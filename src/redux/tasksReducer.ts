@@ -1,5 +1,5 @@
 import { TASKS } from '../constants';
-import { getLocalStorage, setLocalStorage } from '../services/storageService';
+import { getLocalStorage } from '../services/storageService';
 import { TodosState, TodosAction, Todo } from './type';
 
 let tasks = getLocalStorage('tasks');
@@ -17,7 +17,6 @@ const tasksReducer = (
       tasks = state.tasks.concat([{ data: action.payload.data, id: `mr${(~~(Math.random() * 1e8)).toString(16)}s`, time: action.payload.time }]);
       // eslint-disable-next-line max-len
       tasks.sort((task1: Todo, task2: Todo) => (new Date(task1.time) > new Date(task2.time) ? -1 : 1));
-      setLocalStorage('tasks', tasks);
 
       return { ...state, tasks };
 
@@ -25,7 +24,6 @@ const tasksReducer = (
       tasks = state.tasks.filter((task) => task.id !== action.payload.id);
       // eslint-disable-next-line max-len
       tasks.sort((task1: Todo, task2: Todo) => (new Date(task1.time) > new Date(task2.time) ? -1 : 1));
-      setLocalStorage('tasks', tasks);
 
       return { ...state, tasks };
 
@@ -38,7 +36,6 @@ const tasksReducer = (
       });
       // eslint-disable-next-line max-len
       tasks.sort((task1: Todo, task2: Todo) => (new Date(task1.time) > new Date(task2.time) ? -1 : 1));
-      setLocalStorage('tasks', tasks);
 
       return { ...state, tasks };
 

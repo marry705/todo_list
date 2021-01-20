@@ -8,13 +8,14 @@ import {
 
 import rootReducer from '../../redux/index';
 import {
-  TodosAction, TodosState, DispatchType, Todo,
+  TodosAction, HistoryTodosState, DispatchType, Todo,
 } from '../../redux/type';
 import * as actions from '../../redux/actions';
 
 import AddTaskPanel from './AddTaskPanel';
 
-const store: Store<TodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
+// eslint-disable-next-line max-len
+const store: Store<HistoryTodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
 
 beforeEach(() => {
   render(
