@@ -7,7 +7,9 @@ import {
 } from '@testing-library/react';
 
 import rootReducer from '../../redux/index';
-import { TodosAction, TodosState, DispatchType } from '../../redux/type';
+import {
+  TodosAction, TodosState, DispatchType, Todo,
+} from '../../redux/type';
 import * as actions from '../../redux/actions';
 
 import AddTaskPanel from './AddTaskPanel';
@@ -32,21 +34,43 @@ test('Checking the initial rendering of the component AddTaskPanel', () => {
 });
 
 test('Checking the Add button in the component AddTaskPanel', async () => {
+  const newTaskTest:Todo = {
+    id: '0',
+    time: new Date().toString(),
+    data: 'first test',
+  };
+
   const addTask = jest.spyOn(actions, 'addTask');
   const inputNode = await screen.getByPlaceholderText(/Enter new task/i);
 
-  fireEvent.change(inputNode, { target: { value: 'first test' } });
-  expect(inputNode).toHaveValue('first test');
-
+  fireEvent.change(inputNode, { target: { value: newTaskTest.data } });
   fireEvent.click(screen.getByRole('button', { name: 'Add' }));
   expect(addTask).toHaveBeenCalledTimes(1);
+  expect(addTask).toHaveBeenLastCalledWith(newTaskTest);
+});
+
+test('Checking the input fild in the component AddTaskPanel', async () => {
+  const newTaskTest1:Todo = {
+    id: '0',
+    time: new Date().toString(),
+    data: 'second test',
+  };
+
+  const addTask = jest.spyOn(actions, 'addTask');
+  const inputNode = await screen.getByPlaceholderText(/Enter new task/i);
+
+  fireEvent.change(inputNode, { target: { value: newTaskTest1.data } });
+  expect(inputNode).toHaveValue(newTaskTest1.data);
+  fireEvent.keyPress(inputNode, { key: 'Enter', charCode: 13 });
+  expect(addTask).toHaveBeenCalledTimes(2);
+  expect(addTask).toHaveBeenLastCalledWith(newTaskTest1);
+});
+
+test('Checking the input fild with empty data in the component AddTaskPanel', async () => {
+  const addTask = jest.spyOn(actions, 'addTask');
+  const inputNode = await screen.getByPlaceholderText(/Enter new task/i);
 
   fireEvent.change(inputNode, { target: { value: '' } });
-
-  fireEvent.click(screen.getByRole('button', { name: 'Add' }));
-  expect(addTask).toHaveBeenCalledTimes(1);
-
-  fireEvent.change(inputNode, { target: { value: 'second test' } });
   fireEvent.keyPress(inputNode, { key: 'Enter', charCode: 13 });
   expect(addTask).toHaveBeenCalledTimes(2);
 });

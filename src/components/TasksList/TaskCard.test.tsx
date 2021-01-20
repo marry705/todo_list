@@ -86,6 +86,7 @@ test('Checking Delete button', async () => {
 
   fireEvent.click(screen.getByRole('button', { name: 'Delete' }));
   expect(removeTask).toHaveBeenCalledTimes(1);
+  expect(removeTask).toHaveBeenLastCalledWith(taskTest2);
 });
 
 test('Checking Edit button', async () => {
@@ -96,6 +97,12 @@ test('Checking Edit button', async () => {
     id: 'mr8c36c4s',
     time: 'Mon Jan 19 2021 17:30:00 GMT+0300 (Moscow Standard Time)',
     data: 'second',
+  };
+
+  const taskTest3Changed:Todo = {
+    id: 'mr8c36c4s',
+    time: new Date().toString(),
+    data: 'new second',
   };
 
   act(() => {
@@ -112,7 +119,11 @@ test('Checking Edit button', async () => {
   fireEvent.click(screen.getByRole('button', { name: 'Edit' }));
   expect(taskInput).not.toBeDisabled();
 
+  fireEvent.change(taskInput, { target: { value: taskTest3Changed.data } });
+  expect(taskInput).toHaveValue(taskTest3Changed.data);
+
   fireEvent.keyPress(taskInput, { key: 'Enter', charCode: 13 });
   expect(taskInput).toBeDisabled();
   expect(changeTask).toHaveBeenCalledTimes(1);
+  expect(changeTask).toHaveBeenLastCalledWith(taskTest3Changed);
 });
