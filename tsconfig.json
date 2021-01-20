@@ -5,7 +5,7 @@
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "outDir": "./build/",
+    "outDir": "dist/",
     "preserveConstEnums": true,
     "removeComments": true,
     "sourceMap": true,

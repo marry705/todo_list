@@ -2,10 +2,21 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Input, Button } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 import { addTask } from '../../redux/actions';
 
+const useStyles = makeStyles(() => createStyles({
+  formContainer: {
+    flex: '1 1 auto',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+}));
+
 const AddTaskPanel: React.FC = () => {
+  const classes = useStyles();
+
   const newTaskInput = React.useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
@@ -26,7 +37,7 @@ const AddTaskPanel: React.FC = () => {
   return (
     <form
       onSubmit={(e) => { e.preventDefault(); }}
-      className="form-container"
+      className={classes.formContainer}
     >
       <Input
         fullWidth

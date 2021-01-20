@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -23,10 +25,6 @@ module.exports = {
         }],
       },
       {
-        test: /\.css$/i,
-        loader: ['style-loader', 'css-loader'],
-      },
-      {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader'],
       },
@@ -43,6 +41,13 @@ module.exports = {
     hotOnly: true,
   },
   plugins: [
+    new BundleAnalyzerPlugin(
+      {
+        analyzerMode: 'disabled',
+        generateStatsFile: true,
+        statsOptions: { source: false },
+      },
+    ),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: 'ToDo List',

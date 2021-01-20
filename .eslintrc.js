@@ -3,12 +3,17 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    'react-hooks',
+    'import',
+    '@typescript-eslint',
+  ],
   extends: [
     'plugin:react/recommended',
     'airbnb',
     'plugin:@typescript-eslint/recommended',
   ],
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -16,21 +21,26 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: [
-    'react-hooks',
-    '@typescript-eslint',
-  ],
   rules: {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/prop-types': 'off',
     'no-bitwise': ['error', { allow: ['~'] }],
-    'no-use-before-define': ['error', { functions: false, classes: false, variables: false }],
-    'import/extensions': 'off',
-    'import/no-unresolved': [2, { caseSensitive: false }],
+    'no-use-before-define': 'off',
+    'import/extensions': ['error', 'never', { ignorePackages: true }],
+    'import/no-unresolved': 'error',
+    'import/no-extraneous-dependencies': ['error', { peerDependencies: true }],
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
   },
   settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
     react: {
       pragma: 'React',
       version: 'detect',
