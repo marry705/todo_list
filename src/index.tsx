@@ -12,7 +12,7 @@ import App from './App';
 const store: Store<HistoryTodosState, TodosAction> & { dispatch: DispatchType } = createStore(rootReducer);
 
 store.subscribe(() => {
-  const state:HistoryTodosState = store.getState();
+  const state: HistoryTodosState = store.getState();
   setLocalStorage('tasks', state.toDoList.present.tasks);
 });
 

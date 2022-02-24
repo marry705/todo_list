@@ -75,7 +75,7 @@
   },
   "scripts": {
     "build": "webpack --mode production --progress --hide-modules",
-    "start": "webpack-dev-server --open --hot",
+    "start": "webpack-dev-server --open --hot --host=0.0.0.0 --public=localhost:3000",
     "bundle-size": "webpack-bundle-analyzer --port 3001 dist/stats.json",
     "test": "jest",
     "lint": "eslint src --ext .ts,.tsx",
